@@ -51,12 +51,12 @@
       </section>
       <section id="portfolio">
         <h2>Mes Projets</h2>
-        <div class="boutons-filtres">
-          <a href="#">Tous</a>
-          <a href="#">Objets</a>
-          <a href="#">Appartements</a>
-          <a href="#">Hôtels & restaurants</a>
-        </div>
+        <form method="get" action="" class="boutons-filtres">
+          <input type="radio" name="categorie" id="tous"><label for="tous">Tous</label></input>
+          <input type="radio" name="categorie" id="objets"><label for="objets">Objets</label></input>
+          <input type="radio" name="categorie" id="appartements"><label for="appartements">Appartements</label></input>
+          <input type="radio" name="categorie" id="hotels"><label for="hotels">Hôtels & restaurants</label></input>
+        </form>
         <div class="gallery">
           <!-- Importation des works via l'API -->
 

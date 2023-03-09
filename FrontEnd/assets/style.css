@@ -107,6 +107,7 @@ section {
 }
 body {
   line-height: 1;
+  background-color: #fffef8;
 }
 ol,
 ul {
@@ -137,7 +138,7 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  margin: 50px 0;
+  margin: 50px 0 150px 0;
 }
 section {
   margin: 50px 0;
@@ -163,6 +164,7 @@ h2 {
   font-weight: 700;
   font-size: 30px;
   color: #1d6154;
+  margin-top: 5em;
 }
 nav ul {
   display: flex;
@@ -180,6 +182,7 @@ li:hover {
 #introduction {
   display: flex;
   align-items: center;
+  align-items: center;
 }
 #introduction figure {
   flex: 1;
@@ -195,6 +198,7 @@ li:hover {
 }
 #introduction h2 {
   margin-bottom: 1em;
+  margin-top: 0;
 }
 
 #introduction p {
@@ -202,7 +206,7 @@ li:hover {
 }
 #portfolio h2 {
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }
 .gallery {
   width: 100%;
@@ -266,11 +270,11 @@ footer nav ul {
 .boutons-filtres {
   display: flex;
   justify-content: center;
-  gap: 3em;
-  margin-bottom: 3em;
+  gap: 1em;
+  margin-bottom: 4em;
 }
 
-.boutons-filtres > a {
+.boutons-filtres > label {
   font-family: "Syne";
   font-weight: 700;
   font-size: 1.3em;
@@ -281,7 +285,16 @@ footer nav ul {
   border-radius: 10em;
 }
 
-.boutons-filtres > a:hover {
+/* .boutons-filtres > label:hover {
   color: white;
   background-color: #1d6154;
+} */
+
+.boutons-filtres > input:checked + label {
+  color: white;
+  background-color: #1d6154;
+}
+
+.boutons-filtres > input {
+  display: none;
 }

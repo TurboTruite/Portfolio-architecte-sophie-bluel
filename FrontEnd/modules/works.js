@@ -20,3 +20,44 @@ function generateWorks(works) {
 }
 
 generateWorks(works);
+
+// Filtrer projets : afficher tout
+const allButton = document.querySelector("#tous");
+
+allButton.addEventListener("click", function () {
+  document.querySelector(".gallery").innerHTML = "";
+  generateWorks(works);
+});
+
+// Filtrer projets : objets uniquement
+const objectsButton = document.querySelector("#objets");
+
+objectsButton.addEventListener("click", function () {
+  const filteredWorks = works.filter((works) => {
+    return works.category.name === "Objets";
+  });
+  document.querySelector(".gallery").innerHTML = "";
+  generateWorks(filteredWorks);
+});
+
+// Filtrer projets : appartements uniquement
+const aptButton = document.querySelector("#appartements");
+
+aptButton.addEventListener("click", function () {
+  const filteredWorks = works.filter((works) => {
+    return works.category.name === "Appartements";
+  });
+  document.querySelector(".gallery").innerHTML = "";
+  generateWorks(filteredWorks);
+});
+
+// Filtrer projets : hôtels uniquement
+const hotelButton = document.querySelector("#hotels");
+
+hotelButton.addEventListener("click", function () {
+  const filteredWorks = works.filter((works) => {
+    return works.category.name === "Hotels & restaurants";
+  });
+  document.querySelector(".gallery").innerHTML = "";
+  generateWorks(filteredWorks);
+});

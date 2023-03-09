@@ -1,10 +1,11 @@
-export async function fetchWorks() {
-  const r = await fetch("http://localhost:5678/api/works");
-  if (!r.ok) {
-    throw new Error("Problème d'acccès serveur");
-  }
-  const works = await r.json();
+const r = await fetch("http://localhost:5678/api/works");
+if (!r.ok) {
+  throw new Error("Problème d'acccès serveur");
+}
+const works = await r.json();
 
+// Générer la galerie de travaux
+function generateWorks(works) {
   for (let i = 0; i < works.length; i++) {
     const gallery = document.querySelector(".gallery");
     const figure = document.createElement("figure");
@@ -17,3 +18,5 @@ export async function fetchWorks() {
     figure.appendChild(figCaption);
   }
 }
+
+generateWorks(works);

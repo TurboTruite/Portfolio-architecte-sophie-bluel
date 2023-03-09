@@ -250,6 +250,42 @@ li:hover {
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+#login {
+  width: 40%;
+  margin: 0em auto 20em auto;
+}
+#login > * {
+  text-align: center;
+}
+#login h2 {
+  margin-bottom: 20px;
+}
+#login form {
+  text-align: left;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+#login input {
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#login label {
+  margin: 2em 0 1em 0;
+}
+#login textarea {
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#login a {
+  font-weight: 600;
+  display: block;
+}
+
 input[type="submit"] {
   font-family: "Syne";
   font-weight: 700;
@@ -261,10 +297,15 @@ input[type="submit"] {
   border-radius: 60px;
 }
 
+footer {
+  background-color: white;
+  border: 2em solid white;
+}
+
 footer nav ul {
   display: flex;
   justify-content: flex-end;
-  margin: 2em;
+  margin: 0em;
 }
 
 .boutons-filtres {

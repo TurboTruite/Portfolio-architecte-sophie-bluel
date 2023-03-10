@@ -16,12 +16,6 @@ loginButton.addEventListener("click", async (e) => {
     }),
   })
 
-  // .then((response) => response.json())
-  // .then((data) => console.log(data))
-  // .catch((err) => {
-  //   console.log(err);
-  //  });
-
   const r = await response.json()
 
   if (r.message === "user not found") {
@@ -30,10 +24,8 @@ loginButton.addEventListener("click", async (e) => {
   } else {
     window.localStorage.setItem("token", r);
     window.location.assign("./index.html");
-
-
   }
 
 
 })
-console.log(window.localStorage.getItem('token'))
+// console.log(window.localStorage.getItem('token'))

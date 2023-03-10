@@ -166,6 +166,29 @@ h2 {
   color: #1d6154;
   margin-top: 5em;
 }
+
+
+/* Passer ca en display none */
+.mode-edition-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  height: 50px;
+  background-color: black;
+  color: white;
+}
+
+.mode-edition-header button {
+  font-family: 'Work Sans';
+  color: black;
+  background-color: white;
+  text-align: center;
+  border-radius: 60px;
+  padding: 0.5em 1.5em;
+  font-weight: bold;
+}
+
 nav ul {
   display: flex;
   align-items: center;
@@ -189,14 +212,36 @@ nav li a:hover {
   color: #b1663c;
 }
 
+.login {
+  display: block;
+}
+
+.logout {
+  display: none;
+}
+
 #introduction {
   display: flex;
   align-items: center;
   align-items: center;
+  margin-bottom: 150px;
 }
 #introduction figure {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: flex-start;
 }
+
+
+/* modif ici pour login */
+.modification {
+  display: flex;
+  gap: 0.8rem;
+  margin-left: 4em;
+}
+
 #introduction img {
   display: block;
   margin: auto;
@@ -214,10 +259,35 @@ nav li a:hover {
 #introduction p {
   margin-bottom: 0.5em;
 }
-#portfolio h2 {
-  text-align: center;
+
+.titre-projets {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 50px;
   margin-bottom: 2em;
 }
+
+.titre-projets h2 {
+  flex: 0 1 auto;
+  position: absolute;
+  width: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0;
+}
+
+.titre-projets div {
+  flex: 0 1 auto;
+  margin-left: auto;
+  width: 450px;
+}
+
+/* #portfolio h2 {
+  text-align: center;
+} */
 .gallery {
   width: 100%;
   display: grid;

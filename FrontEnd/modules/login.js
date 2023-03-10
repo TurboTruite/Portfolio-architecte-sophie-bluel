@@ -27,7 +27,13 @@ loginButton.addEventListener("click", async (e) => {
   if (r.message === "user not found") {
     const errorMsg = document.getElementsByClassName("login-error-msg")[0];
     errorMsg.style.display = 'block';
+  } else {
+    window.localStorage.setItem("token", r);
+    window.location.assign("./index.html");
+
+
   }
 
 
 })
+console.log(window.localStorage.getItem('token'))

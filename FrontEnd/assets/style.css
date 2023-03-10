@@ -296,6 +296,12 @@ nav li a:hover {
   display: block;
 }
 
+.login-error-msg {
+  color: red;
+  margin-bottom: 2rem;
+  display: none;
+}
+
 input[type="submit"] {
   font-family: "Syne";
   font-weight: 700;

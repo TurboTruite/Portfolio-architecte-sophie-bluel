@@ -64,7 +64,6 @@ function arrowsOnHover () {
   const modalGalleryImg = document.querySelectorAll(".image-overlay");
   for (let i = 0; i < modalGalleryImg.length; i++) {
     modalGalleryImg[i].addEventListener("mouseover", () => {
-      console.log('youpi')
       document.getElementsByClassName('arrows')[i].style.display = "block";
     });
     modalGalleryImg[i].addEventListener("mouseout", () => {

@@ -446,9 +446,9 @@ footer nav ul {
 .modal-wrapper {
   background: white;
   width: 750px;
-  height: 900px;
+  height: 820px;
   max-width: calc(100vw - 20%);
-  max-height: calc(100vh - 20%);
+  max-height: calc(100vh - 10%);
   /* A supprimer ? */
   overflow: auto;
   display: flex;
@@ -474,7 +474,7 @@ footer nav ul {
 
 .modal-gallery {
   display: flex;
-  gap: 1em;
+  gap: 0.7em;
   flex-wrap: wrap;
   width: 70%;
   padding-bottom: 3em;
@@ -485,14 +485,36 @@ footer nav ul {
   display: flex;
   flex-direction: column;
   align-items: baseline;
+  flex-basis: calc(20.3% - 0.7em);
+  position: relative;
 }
 
 .modal-gallery figure img {
-  max-width: 80px;
   object-fit: cover;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
 }
 
-.modal-wrapper button {
+.image-overlay {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 0.5em;
+  position: absolute ;
+  left: 0; top: 0; right: 0; bottom: 0;
+  gap: 0.2em;
+}
+
+.modal-wrapper .overlay-button {
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 2px;
+  height: 20px;
+  font-size: 70%;
+}
+
+.add-picture-button {
   font-family: "Syne";
   font-weight: 700;
   color: white;
@@ -502,7 +524,7 @@ footer nav ul {
   text-align: center;
   border-radius: 60px;
   padding: 1em 3em;
-  margin: 3em;
+  margin-top: 3em;
 }
 
 .supprimer-gallerie {

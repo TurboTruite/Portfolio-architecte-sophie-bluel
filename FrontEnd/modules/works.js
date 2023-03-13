@@ -21,6 +21,23 @@ function generateWorks(works) {
 
 generateWorks(works);
 
+function generateModalGallery(works) {
+  for (let i = 0; i < works.length; i++) {
+    const gallery = document.querySelector(".modal-gallery");
+    console.log('on y est tkt frr')
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    img.src = works[i].imageUrl;
+    const editLink = document.createElement("a");
+    editLink.innerHTML = "éditer";
+    gallery.appendChild(figure);
+    figure.appendChild(img);
+    figure.appendChild(editLink);
+  }
+}
+
+generateModalGallery(works)
+
 // Filtrer projets : afficher tout
 const allButton = document.querySelector("#tous");
 

@@ -58,6 +58,25 @@ function generateModalGallery(works) {
 generateModalGallery(works);
 
 
+// Modale : apparition des flèches de déplacement au hover
+
+function arrowsOnHover () {
+  const modalGalleryImg = document.querySelectorAll(".image-overlay");
+  for (let i = 0; i < modalGalleryImg.length; i++) {
+    modalGalleryImg[i].addEventListener("mouseover", () => {
+      console.log('youpi')
+      document.getElementsByClassName('arrows')[i].style.display = "block";
+    });
+    modalGalleryImg[i].addEventListener("mouseout", () => {
+      document.getElementsByClassName('arrows')[i].style.display = "none";
+    });
+  }
+
+}
+
+
+arrowsOnHover();
+
 // Filtrer projets : afficher tout
 
 const allButton = document.querySelector("#tous");

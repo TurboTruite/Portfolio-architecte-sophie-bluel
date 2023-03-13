@@ -26,20 +26,3 @@ document.querySelectorAll('.js-modal').forEach(a => {
 
 
 
-// Modale : apparition des flèches de déplacement au hover
-
-function arrowsOnHover () {
-    const modalGalleryImg = document.querySelectorAll(".image-overlay");
-    for (let i = 0; i < modalGalleryImg.length; i++) {
-      modalGalleryImg[i].addEventListener("mouseover", () => {
-        document.getElementsByClassName('arrows')[i].style.display = "block";
-      });
-      modalGalleryImg[i].addEventListener("mouseout", () => {
-        document.getElementsByClassName('arrows')[i].style.display = "none";
-      });
-    }
-  
-  }
-  
-  
-  arrowsOnHover();

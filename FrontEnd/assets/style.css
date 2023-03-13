@@ -236,10 +236,11 @@ nav li a:hover {
 
 
 /* modif ici pour login */
-.modification {
+#picture-modification {
   display: flex;
   gap: 0.8rem;
   margin-left: 4em;
+  text-decoration: none;
 }
 
 #introduction img {
@@ -279,10 +280,14 @@ nav li a:hover {
   margin-top: 0;
 }
 
-.titre-projets div {
+#works-modification {
   flex: 0 1 auto;
   margin-left: auto;
   width: 450px;
+  display: flex;
+  gap: 0.8rem;
+  /* margin-left: 4em; */
+  text-decoration: none;
 }
 
 /* #portfolio h2 {

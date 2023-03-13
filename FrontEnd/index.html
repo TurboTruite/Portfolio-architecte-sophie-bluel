@@ -13,6 +13,7 @@
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
     <script src="https://kit.fontawesome.com/61e3f1ef50.js" crossorigin="anonymous"></script>
+    <script src="./modules/admin.js" defer></script>
     <script type="module" src="./modules/works.js"></script>
   </head>
   <body>
@@ -27,8 +28,8 @@
         <ul>
           <li><a href="./index.html" style="font-weight: 900">projets</a></li>
           <li>contact</li>
-          <li class="login"><a href="./login.html">login</a></li>
-          <li class="logout"><a href="">logout</a></li>
+          <li class="login" id="login-menu-item"><a href="./login.html">login</a></li>
+          <li class="logout" id="logout-menu-item"><a href="">logout</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -37,10 +38,10 @@
       <section id="introduction">
         <figure>
           <img src="./assets/images/sophie-bluel.png" alt="" />
-          <div class="modification">
+          <a href="" id="picture-modification">
             <figcaption><i class="fa-regular fa-pen-to-square"></i></figcaption>
             <p>modifier</p>
-          </div>
+          </a>
 
         </figure>
         <article>
@@ -65,10 +66,10 @@
       <section id="portfolio">
         <div class="titre-projets">
           <h2>Mes Projets</h2>
-          <div class="modification">
+          <a href="" id="works-modification">
             <figcaption><i class="fa-regular fa-pen-to-square"></i></figcaption>
             <p>modifier</p>
-          </div>
+          </a>
         </div>
         <form method="get" action="" class="boutons-filtres">
           <input

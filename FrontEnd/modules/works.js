@@ -40,7 +40,7 @@ function generateModalGallery(works) {
     const trashcan = document.createElement("i");
     trashcan.setAttribute('class', 'fa-solid fa-trash-can');
     const arrowsOverlayButton = document.createElement("button");
-    arrowsOverlayButton.setAttribute('class', 'overlay-button');
+    arrowsOverlayButton.setAttribute('class', 'overlay-button arrows')
     arrowsOverlayButton.setAttribute('display', 'block');
     const arrows = document.createElement("i");
     arrows.setAttribute('class', 'fa-solid fa-up-down-left-right');
@@ -56,23 +56,6 @@ function generateModalGallery(works) {
 }
 
 generateModalGallery(works);
-
-// Modale : apparition des flèches de déplacement au hover
-
-function arrowsOnHover () {
-  const modalGalleryImg = document.querySelectorAll(".image-overlay");
-  for (let i = 0; i < modalGalleryImg.length; i++) {
-    modalGalleryImg[i].addEventListener("mouseover", () => {
-      console.log('youpi');
-    });
-  }
-
-}
-
-
-arrowsOnHover()
-
-
 
 
 // Filtrer projets : afficher tout

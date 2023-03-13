@@ -288,6 +288,7 @@ nav li a:hover {
   gap: 0.8rem;
   /* margin-left: 4em; */
   text-decoration: none;
+  color: #000000;
 }
 
 /* #portfolio h2 {
@@ -433,7 +434,7 @@ footer nav ul {
 
 .modal {
   position: fixed;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   top: 0;
@@ -499,7 +500,7 @@ footer nav ul {
 .image-overlay {
   display: flex;
   flex-direction: row-reverse;
-  padding: 0.5em;
+  padding: 0.4em;
   position: absolute ;
   left: 0; top: 0; right: 0; bottom: 0;
   gap: 0.2em;
@@ -512,6 +513,10 @@ footer nav ul {
   border-radius: 2px;
   height: 20px;
   font-size: 70%;
+}
+
+.arrows {
+  display: none;
 }
 
 .add-picture-button {

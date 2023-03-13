@@ -15,6 +15,7 @@
     <script src="https://kit.fontawesome.com/61e3f1ef50.js" crossorigin="anonymous"></script>
     <script src="./modules/admin.js" defer></script>
     <script type="module" src="./modules/works.js" defer></script>
+    <script type="module" src="./modules/modal.js" defer></script>
   </head>
   <body>
     <div class="mode-edition-header">
@@ -66,7 +67,7 @@
       <section id="portfolio">
         <div class="titre-projets">
           <h2>Mes Projets</h2>
-          <a href="" id="works-modification">
+          <a href="#modal1" id="works-modification" class="js-modal">
             <figcaption><i class="fa-regular fa-pen-to-square"></i></figcaption>
             <p>modifier</p>
           </a>
@@ -109,7 +110,7 @@
         </form>
       </section>
       <aside id="modal1" class="modal">
-        <div class="modal-wrapper">
+        <div class="modal-wrapper js-modal-stop">
           <div class="modal-header">
             <i class="fa-solid fa-xmark"></i>
           </div>
@@ -117,7 +118,7 @@
           <div class="modal-gallery">
           </div>
           <button class="add-picture-button">Ajouter une photo</button>
-          <a href="" class="supprimer-gallerie">Supprimer la gallerie</a>
+          <a href="#" class="supprimer-gallerie">Supprimer la gallerie</a>
         </div>
       </aside>
     </main>

@@ -30,7 +30,6 @@ function generateWorks(works) {
 }
 
 generateWorks(works);
-console.log(works)
 
 
 // Générer la galerie dans la modale
@@ -97,7 +96,6 @@ function workDelete () {
         "accept": "*/*",
         "Authorization": `Bearer ${JSON.parse(window.localStorage.getItem('token'))['token']}`,
       }})
-      console.log(works)
     });
   }
 }

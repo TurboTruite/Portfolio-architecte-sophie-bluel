@@ -28,4 +28,3 @@ loginButton.addEventListener("click", async (e) => {
 
 
 })
-// console.log(window.localStorage.getItem('token'))

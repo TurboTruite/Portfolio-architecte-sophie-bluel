@@ -1,8 +1,18 @@
-const r = await fetch("http://localhost:5678/api/works");
+let r = await fetch("http://localhost:5678/api/works");
 if (!r.ok) {
   throw new Error("Problème d'acccès serveur");
 }
-const works = await r.json();
+export let works = await r.json();
+
+// async function fetchWorks() {
+//   const r = await fetch("http://localhost:5678/api/works");
+//   if (!r.ok) {
+//     throw new Error("Problème d'acccès serveur");
+//   }
+//   return await r.json();
+// } 
+// const works = fetchWorks()
+
 
 // Générer la galerie de travaux
 function generateWorks(works) {
@@ -20,6 +30,7 @@ function generateWorks(works) {
 }
 
 generateWorks(works);
+console.log(works)
 
 
 // Générer la galerie dans la modale
@@ -81,11 +92,12 @@ function workDelete () {
   const deleteButton = document.querySelectorAll(".trashcan-overlay-button");
   for (let i = 0; i < deleteButton.length; i++) {
     deleteButton[i].addEventListener("click", (e) => {
-      e.preventDefault();
-      fetch(`http://localhost:5678/api/works/${i}`, {method: "DELETE", headers: {
+      const id = works[i]["id"];
+      fetch(`http://localhost:5678/api/works/${id}`, {method: "DELETE", headers: {
         "accept": "*/*",
         "Authorization": `Bearer ${JSON.parse(window.localStorage.getItem('token'))['token']}`,
       }})
+      console.log(works)
     });
   }
 }

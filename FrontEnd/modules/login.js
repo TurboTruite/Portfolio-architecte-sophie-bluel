@@ -22,7 +22,7 @@ loginButton.addEventListener("click", async (e) => {
     const errorMsg = document.getElementsByClassName("login-error-msg")[0];
     errorMsg.style.display = 'block';
   } else {
-    window.localStorage.setItem("token", r);
+    window.localStorage.setItem("token", JSON.stringify(r));
     window.location.assign("./index.html");
   }
 

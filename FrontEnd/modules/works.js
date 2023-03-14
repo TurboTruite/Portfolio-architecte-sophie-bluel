@@ -36,7 +36,7 @@ function generateModalGallery(works) {
     const imgOverlay = document.createElement("div");
     imgOverlay.setAttribute('class', 'image-overlay');
     const trashOverlayButton = document.createElement("button");
-    trashOverlayButton.setAttribute('class', 'overlay-button');
+    trashOverlayButton.setAttribute('class', 'trashcan-overlay-button');
     const trashcan = document.createElement("i");
     trashcan.setAttribute('class', 'fa-solid fa-trash-can');
     const arrowsOverlayButton = document.createElement("button");
@@ -75,6 +75,22 @@ function arrowsOnHover () {
 
 
 arrowsOnHover();
+
+
+function workDelete () {
+  const deleteButton = document.querySelectorAll(".trashcan-overlay-button");
+  for (let i = 0; i < deleteButton.length; i++) {
+    deleteButton[i].addEventListener("click", (e) => {
+      e.preventDefault();
+      fetch(`http://localhost:5678/api/works/${i}`, {method: "DELETE", headers: {
+        "accept": "*/*",
+        "Authorization": `Bearer ${JSON.parse(window.localStorage.getItem('token'))['token']}`,
+      }})
+    });
+  }
+}
+
+workDelete()
 
 // Filtrer projets : afficher tout
 

@@ -112,13 +112,34 @@
       <aside id="modal1" class="modal">
         <div class="modal-wrapper js-modal-stop">
           <div class="modal-header">
-            <i class="fa-solid fa-xmark"></i>
+            <a href="#"><i class="fa-solid fa-xmark"></i></a>
+            <a href=""><i class="fa-solid fa-arrow-left"></i></a>
           </div>
-          <h3>Galerie photo</h3>
-          <div class="modal-gallery">
+          <div class="modal-content1">
+            <h3>Galerie photo</h3>
+            <div class="modal-gallery">
+            </div>
+            <button class="add-picture-button">Ajouter une photo</button>
+            <a href="#" class="supprimer-gallerie">Supprimer la gallerie</a>
           </div>
-          <button class="add-picture-button">Ajouter une photo</button>
-          <a href="#" class="supprimer-gallerie">Supprimer la gallerie</a>
+          <div class="modal-content2">
+            <h3>Ajout photo</h3>
+            <div class="picture-upload-box">
+              <a href="" class="js-image-upload"><i class="fa-regular fa-image"></i></a>
+              <button class="picture-upload-button js-image-upload">+ Ajouter photo</button>
+              <p>jpg, png : 4mo max</p>
+            </div>
+            <form action="#" method="post">
+              <label for="titre">Titre</label>
+              <input type="text" name="titre" id="titre" />
+              <label for="categorie">Catégorie</label>
+              <select name="categorie" id="categorie">
+                <!-- charger les options via API -->
+              </select>
+            </form>
+            <button class="validate-button">Valider</button>
+          </div>
+
         </div>
       </aside>
     </main>

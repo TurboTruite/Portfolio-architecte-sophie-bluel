@@ -446,11 +446,11 @@ footer nav ul {
 
 .modal-wrapper {
   background: white;
-  width: 750px;
-  height: 820px;
+  width: 630px;
+  /* /!\ 731 pour modale 1 */
+  height: 731px;
   max-width: calc(100vw - 20%);
   max-height: calc(100vh - 10%);
-  /* A supprimer ? */
   overflow: auto;
   display: flex;
   flex-direction: column;
@@ -462,15 +462,23 @@ footer nav ul {
   width: calc(100% - 4em);
   display: flex;
   flex-direction: row-reverse;
-  justify-content: flex-start;
-  margin: 2em;
+  justify-content: space-between;
+  margin: 1.5em;
+}
+
+.modal-content1 {
+  height: 100%;
+  /* A changer pour "flex" */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .modal-wrapper h3 {
   font-family: "Work Sans";
   font-weight: 400;
   font-size: 2em;
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
 }
 
 .modal-gallery {
@@ -535,4 +543,106 @@ footer nav ul {
 .supprimer-gallerie {
   text-decoration: none;
   color: #D65353;
+}
+
+.modal-content2 {
+  height: 100%;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.picture-upload-box {
+  width: 66%;
+  height: 170px;
+  background: #E8F1F6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.fa-image {
+  font-size: 4em;
+  font-weight: 100;
+  color: #B9C5CC;
+  margin-top: 0.4em;
+  margin-bottom: 0.3em;
+}
+
+.picture-upload-button {
+  font-family: "Work Sans";
+  font-weight: 500;
+  color: #306685;
+  background-color: #CBD6DC;
+  border: 0;
+  margin-bottom: 0.5em;
+  border-radius: 60px;
+  padding: 1em 3em;
+}
+
+.picture-upload-box p {
+  font-size: 0.7rem;
+}
+
+.modal-content2 form {
+  text-align: left;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 66%;
+  padding-bottom: 3em;
+  border-bottom: 1px solid #B3B3B3;
+}
+
+.modal-content2 input {
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.modal-content2 select {
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3C!--! Font Awesome Pro 6.3.0 by %40fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons  Inc. --%3E%3Cpath d='M169.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 274.7 54.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat, repeat;
+  background-position: right 1.7em top 50%, 0 0;
+  background-size: .65em auto, 100%;
+}
+
+.modal-content2 label {
+  margin: 2em 0 1em 0;
+}
+
+.validate-button {
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  border: 0;
+  width: 237px;
+  text-align: center;
+  border-radius: 60px;
+  padding: 1em 3em;
+  margin-top: 2em;
+}
+
+.modal-header a {
+  text-decoration: none;
+}
+
+.modal-header a i {
+  font-size: 1.5em;
+  color: black;
+}
+
+.fa-arrow-left {
+  display: none;
 }

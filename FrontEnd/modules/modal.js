@@ -39,6 +39,7 @@ const goToModalTwo = function (e) {
 
 const backToModalOne = function (e) {
     e.preventDefault();
+    // Remettre la page 1 par défaut
     const modalTwo = document.getElementsByClassName("modal-content2")[0];
     modalTwo.style.display = 'none';
     const modalOne = document.getElementsByClassName("modal-content1")[0];
@@ -47,6 +48,9 @@ const backToModalOne = function (e) {
     modalWrapper.style.height = '731px';
     const backArrow = document.getElementsByClassName("fa-arrow-left")[0];
     backArrow.style.display = 'none';
+    //réinitialiser messages du formulaire d'upload
+    fileRequirements.innerHTML = "jpg, png : 4mo max";
+    fileRequirements.style.color = "#000000";
     backArrow.removeEventListener('click', backToModalOne);
 }
 
@@ -55,6 +59,8 @@ document.querySelectorAll('.add-picture-button').forEach(a => {
     a.addEventListener('click', goToModalTwo)
 })
 
+
+// Peupler les catégories du drop down du formulaire de soumission
 
 const populateCategories = async function() {
 
@@ -88,17 +94,45 @@ const populateCategories = async function() {
         option.innerHTML = categories[i].name;
         dropDown.appendChild(option);
     }
-
-
-
-
-
-
-
 }
 
 populateCategories()
 
+
+// Sélectionner ume image dans le formulaire de soumission et l'afficher
+
+const input = document.querySelector('#file');
+const fileRequirements = document.querySelector('#file-requirements')
+let uploadBox = document.querySelector('.picture-upload-box')
+
+input.addEventListener('change', updateImageDisplay);
+
+
+function updateImageDisplay() {
+    const file = input.files;
+
+    //  Message d'erreur si le fichier sélectionné ne correspond pas à ce qui est attendu
+
+    // if (!(file[0].type === "image/png") && !(file[0].type === "image/jpg")) {
+    // fileRequirements.innerHTML = "Format invalide - jpg, png : 4mo max";
+    // fileRequirements.style.color = "red";
+    // } else 
+    if (file[0].size > 4000000) {
+        fileRequirements.innerHTML = "Taille trop importante - jpg, png : 4mo max";
+        fileRequirements.style.color = "red";
+        console.log('on est bien là pourtant')
+    } else {
+        while(uploadBox.firstChild) {
+            uploadBox.removeChild(uploadBox.firstChild);
+            }
+        
+            const image = document.createElement('img')
+            image.src = URL.createObjectURL(file[0])
+            image.setAttribute('class', 'thumbnail')
+            console.log (URL.createObjectURL(file[0]))
+            uploadBox.appendChild(image)
+    }
+};
 
 
 

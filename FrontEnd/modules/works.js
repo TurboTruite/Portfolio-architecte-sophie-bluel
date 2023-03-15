@@ -2,7 +2,7 @@ let r = await fetch("http://localhost:5678/api/works");
 if (!r.ok) {
   throw new Error("Problème d'acccès serveur");
 }
-export let works = await r.json();
+let works = await r.json();
 
 // async function fetchWorks() {
 //   const r = await fetch("http://localhost:5678/api/works");

@@ -577,7 +577,7 @@ footer nav ul {
   color: #306685;
   background-color: #CBD6DC;
   border: 0;
-  margin-bottom: 0.5em;
+  margin: 0 0 0.5em 0 !important;
   border-radius: 60px;
   padding: 1em 3em;
 }
@@ -632,6 +632,10 @@ footer nav ul {
   border-radius: 60px;
   padding: 1em 3em;
   margin-top: 2em;
+}
+
+#file {
+  display: none;
 }
 
 .modal-header a {

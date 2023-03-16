@@ -1,17 +1,17 @@
-let r = await fetch("http://localhost:5678/api/works");
-if (!r.ok) {
-  throw new Error("Problème d'acccès serveur");
-}
-let works = await r.json();
+// let r = await fetch("http://localhost:5678/api/works");
+// if (!r.ok) {
+//   throw new Error("Problème d'acccès serveur");
+// }
+// let works = await r.json();
 
-// async function fetchWorks() {
-//   const r = await fetch("http://localhost:5678/api/works");
-//   if (!r.ok) {
-//     throw new Error("Problème d'acccès serveur");
-//   }
-//   return await r.json();
-// } 
-// const works = fetchWorks()
+async function fetchWorks() {
+  const r = await fetch("http://localhost:5678/api/works");
+  if (!r.ok) {
+    throw new Error("Problème d'accès serveur");
+  }
+  return await r.json();
+} 
+const works = fetchWorks()
 
 
 // Générer la galerie de travaux
@@ -47,6 +47,9 @@ function generateModalGallery(works) {
     imgOverlay.setAttribute('class', 'image-overlay');
     const trashOverlayButton = document.createElement("button");
     trashOverlayButton.setAttribute('class', 'trashcan-overlay-button');
+    // Mais pourquoi ça reload bordel?
+    // trashOverlayButton.setAttribute('type', "button");
+    // trashOverlayButton.setAttribute('onclick', "return false");
     const trashcan = document.createElement("i");
     trashcan.setAttribute('class', 'fa-solid fa-trash-can');
     const arrowsOverlayButton = document.createElement("button");
@@ -91,11 +94,12 @@ function workDelete () {
   const deleteButton = document.querySelectorAll(".trashcan-overlay-button");
   for (let i = 0; i < deleteButton.length; i++) {
     deleteButton[i].addEventListener("click", (e) => {
+      e.preventDefault();
       const id = works[i]["id"];
       fetch(`http://localhost:5678/api/works/${id}`, {method: "DELETE", headers: {
         "accept": "*/*",
         "Authorization": `Bearer ${JSON.parse(window.localStorage.getItem('token'))['token']}`,
-      }}).then(res => console.log(res))
+      }});
     });
   }
 }

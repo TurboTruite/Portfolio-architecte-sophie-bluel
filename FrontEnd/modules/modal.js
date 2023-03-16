@@ -51,9 +51,10 @@ const backToModalOne = function (e) {
     //réinitialiser le formulaire d'upload si on ferme la modale
     fileRequirements.innerHTML = "jpg, png : 4mo max";
     fileRequirements.style.color = "#000000";
-    document.querySelector('.upload-interface').style.display = 'flex'
-    document.querySelector('.thumbnail').style.display = 'none'
-    uploadBox.removeChild(document.querySelector('.thumbnail'))
+    document.querySelector('.upload-interface').style.display = 'flex';
+    document.querySelector('.thumbnail').style.display = 'none';
+    document.querySelector("#titre").value = ' ';
+    document.querySelector("#categories").selectedIndex = 0;
     backArrow.removeEventListener('click', backToModalOne);
 
 }
@@ -129,11 +130,9 @@ function updateImageDisplay() {
         fileRequirements.style.color = "red";
     } else {
         document.querySelector('.upload-interface').style.display = 'none'
-        const image = document.createElement('img')
+        const image = document.querySelector(".thumbnail")
         image.src = URL.createObjectURL(selectedImage[0])
-        image.setAttribute('class', 'thumbnail')
         console.log(selectedImage[0])
-        uploadBox.appendChild(image)
         document.querySelector('.thumbnail').style.display = 'flex'
     }
 };

@@ -95,12 +95,36 @@ function workDelete () {
       fetch(`http://localhost:5678/api/works/${id}`, {method: "DELETE", headers: {
         "accept": "*/*",
         "Authorization": `Bearer ${JSON.parse(window.localStorage.getItem('token'))['token']}`,
-      }})
+      }}).then(res => console.log(res))
     });
   }
 }
 
 workDelete()
+
+export function addWork(image, title, category, id) {
+  this.image = image
+  this.title = title
+  this.category = category
+  this.id = id;
+
+  const form = new FormData();
+  form.append('image', /*File(['<data goes here>'], 'abajour-tahina.png;type=image/png'*/ image);
+  form.append('title', title);
+  form.append('category', category);
+
+
+  fetch('http://localhost:5678/api/works', {
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+      'Authorization': 'Bearer ' + id,
+      'Content-Type': 'multipart/form-data'
+    },
+    body: form
+  });
+
+}
 
 // Filtrer projets : afficher tout
 

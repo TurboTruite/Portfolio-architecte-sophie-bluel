@@ -1,3 +1,6 @@
+import { addWork } from "./works.js";
+
+
 const openModal = function (e) {
     e.preventDefault();
     const target = document.getElementsByClassName("modal")[0];
@@ -138,4 +141,5 @@ function updateImageDisplay() {
 };
 
 
-
+const boutonEnvoi = document.querySelector(".validate-button")
+boutonEnvoi.addEventListener("click", () => addWork())

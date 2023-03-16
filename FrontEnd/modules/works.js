@@ -4,15 +4,23 @@
 // }
 // let works = await r.json();
 
+
+// let works = await fetch("http://localhost:5678/api/works")
+// .then(works => works.json())
+
+
 async function fetchWorks() {
   const r = await fetch("http://localhost:5678/api/works");
-  if (!r.ok) {
-    throw new Error("Problème d'accès serveur");
-  }
-  return await r.json();
+  const works = await r.json();
+  console.log(works)
+  generateWorks(works)
+  generateModalGallery(works)
+  arrowsOnHover()
+  workDelete(works)
 } 
-const works = fetchWorks()
 
+fetchWorks()
+// console.log(works)
 
 // Générer la galerie de travaux
 function generateWorks(works) {
@@ -29,7 +37,7 @@ function generateWorks(works) {
   }
 }
 
-generateWorks(works);
+// generateWorks(works);
 
 
 // Générer la galerie dans la modale
@@ -68,7 +76,7 @@ function generateModalGallery(works) {
   }
 }
 
-generateModalGallery(works);
+// generateModalGallery(works);
 
 
 // Modale : apparition des flèches de déplacement au hover
@@ -90,16 +98,20 @@ function arrowsOnHover () {
 arrowsOnHover();
 
 
-function workDelete () {
+function workDelete (works) {
   const deleteButton = document.querySelectorAll(".trashcan-overlay-button");
   for (let i = 0; i < deleteButton.length; i++) {
     deleteButton[i].addEventListener("click", (e) => {
       e.preventDefault();
       const id = works[i]["id"];
+      console.log('beeeeep')
       fetch(`http://localhost:5678/api/works/${id}`, {method: "DELETE", headers: {
         "accept": "*/*",
         "Authorization": `Bearer ${JSON.parse(window.localStorage.getItem('token'))['token']}`,
       }});
+      document.querySelector(".gallery").innerHTML= '';
+      document.querySelector(".modal-gallery").innerHTML= '';
+      fetchWorks()
     });
   }
 }

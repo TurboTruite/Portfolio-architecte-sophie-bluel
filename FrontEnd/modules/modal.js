@@ -128,20 +128,13 @@ function updateImageDisplay() {
         fileRequirements.innerHTML = "Taille trop importante - jpg, png : 4mo max";
         fileRequirements.style.color = "red";
     } else {
-
-        // while(uploadBox.firstChild) {
-        //     uploadBox.removeChild(uploadBox.firstChild);
-        //     }
-
         document.querySelector('.upload-interface').style.display = 'none'
-        
         const image = document.createElement('img')
         image.src = URL.createObjectURL(selectedImage[0])
         image.setAttribute('class', 'thumbnail')
         console.log(selectedImage[0])
         uploadBox.appendChild(image)
         document.querySelector('.thumbnail').style.display = 'flex'
-
     }
 };
 

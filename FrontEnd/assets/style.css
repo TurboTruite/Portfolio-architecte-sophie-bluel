@@ -563,6 +563,12 @@ footer nav ul {
   border-radius: 3px;
 }
 
+.upload-interface {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .fa-image {
   font-size: 4em;
   font-weight: 100;
@@ -584,6 +590,13 @@ footer nav ul {
 
 .picture-upload-box p {
   font-size: 0.7rem;
+}
+
+.thumbnail {
+  display: none;
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .modal-content2 form {
@@ -650,3 +663,4 @@ footer nav ul {
 .fa-arrow-left {
   display: none;
 }
+

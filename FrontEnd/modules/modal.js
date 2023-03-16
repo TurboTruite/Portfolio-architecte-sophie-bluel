@@ -48,10 +48,14 @@ const backToModalOne = function (e) {
     modalWrapper.style.height = '731px';
     const backArrow = document.getElementsByClassName("fa-arrow-left")[0];
     backArrow.style.display = 'none';
-    //réinitialiser messages du formulaire d'upload
+    //réinitialiser le formulaire d'upload si on ferme la modale
     fileRequirements.innerHTML = "jpg, png : 4mo max";
     fileRequirements.style.color = "#000000";
+    document.querySelector('.upload-interface').style.display = 'flex'
+    document.querySelector('.thumbnail').style.display = 'none'
+    uploadBox.removeChild(document.querySelector('.thumbnail'))
     backArrow.removeEventListener('click', backToModalOne);
+
 }
 
 
@@ -101,36 +105,43 @@ populateCategories()
 
 // Sélectionner ume image dans le formulaire de soumission et l'afficher
 
-const input = document.querySelector('#file');
-const fileRequirements = document.querySelector('#file-requirements')
-let uploadBox = document.querySelector('.picture-upload-box')
-
-input.addEventListener('change', updateImageDisplay);
+let input = document.querySelector('#file');
+const fileRequirements = document.querySelector('#file-requirements');
+let uploadBox = document.querySelector('.picture-upload-box');
+let selectedImage = ''
+input.addEventListener('change', () => {
+    console.log('click détecté')
+    updateImageDisplay()
+});
 
 
 function updateImageDisplay() {
-    const file = input.files;
+    selectedImage = input.files;
 
     //  Message d'erreur si le fichier sélectionné ne correspond pas à ce qui est attendu
 
-    // if (!(file[0].type === "image/png") && !(file[0].type === "image/jpg")) {
-    // fileRequirements.innerHTML = "Format invalide - jpg, png : 4mo max";
-    // fileRequirements.style.color = "red";
-    // } else 
-    if (file[0].size > 4000000) {
+    if (!(selectedImage[0].type === "image/png") && !(selectedImage[0].type === "image/jpeg")) {
+    fileRequirements.innerHTML = "Format invalide - jpg, png : 4mo max";
+    fileRequirements.style.color = "red";
+    } else 
+    if (selectedImage[0].size > 4000000) {
         fileRequirements.innerHTML = "Taille trop importante - jpg, png : 4mo max";
         fileRequirements.style.color = "red";
-        console.log('on est bien là pourtant')
     } else {
-        while(uploadBox.firstChild) {
-            uploadBox.removeChild(uploadBox.firstChild);
-            }
+
+        // while(uploadBox.firstChild) {
+        //     uploadBox.removeChild(uploadBox.firstChild);
+        //     }
+
+        document.querySelector('.upload-interface').style.display = 'none'
         
-            const image = document.createElement('img')
-            image.src = URL.createObjectURL(file[0])
-            image.setAttribute('class', 'thumbnail')
-            console.log (URL.createObjectURL(file[0]))
-            uploadBox.appendChild(image)
+        const image = document.createElement('img')
+        image.src = URL.createObjectURL(selectedImage[0])
+        image.setAttribute('class', 'thumbnail')
+        console.log(selectedImage[0])
+        uploadBox.appendChild(image)
+        document.querySelector('.thumbnail').style.display = 'flex'
+
     }
 };
 

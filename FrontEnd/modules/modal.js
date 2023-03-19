@@ -56,8 +56,10 @@ const backToModalOne = function (e) {
     fileRequirements.style.color = "#000000";
     document.querySelector('.upload-interface').style.display = 'flex';
     document.querySelector('.thumbnail').style.display = 'none';
-    document.querySelector("#titre").value = ' ';
-    document.querySelector("#categories").selectedIndex = 0;
+    document.querySelector("#title").value = ' ';
+    document.querySelector("#category").selectedIndex = 0;
+    document.querySelector(".validate-button-ok").style.display = "none";
+    document.querySelector(".validate-button-notOk").style.display = "block";
     backArrow.removeEventListener('click', backToModalOne);
 
 }
@@ -69,7 +71,7 @@ document.querySelectorAll('.add-picture-button').forEach(a => {
 
 
 // Peupler les catégories du drop down du formulaire de soumission
-
+let categories = ''
 const populateCategories = async function() {
 
     // Récuperer les catégories via l'API
@@ -78,10 +80,9 @@ const populateCategories = async function() {
     }});
     if (!r.ok) {
         throw new Error("Problème d'acccès serveur");
-
     };
 
-    const categories = await r.json();
+    categories = await r.json();
 
     // Générerer l'HTML des catégories
 
@@ -91,14 +92,14 @@ const populateCategories = async function() {
         let valueAttribute = '';
 
         // Ne garder que le premier mot de la catégorie pour la value de l'option du drop down
-        if (categories[i].name.includes("")) {
-            valueAttribute = categories[i].name.split(/\s+/).slice(0, 1).join(" ");
-        } else {
+        // if (categories[i].name.includes("")) {
+        //     valueAttribute = categories[i].name.split(/\s+/).slice(0, 1).join(" ");
+        // } else {
             valueAttribute = categories[i].name;
-        }
+        // }
 
         const option = document.createElement('option');
-        option.setAttribute('value', valueAttribute.toLowerCase());
+        option.setAttribute('value', valueAttribute/*.toLowerCase()*/);
         option.innerHTML = categories[i].name;
         dropDown.appendChild(option);
     }
@@ -140,6 +141,52 @@ function updateImageDisplay() {
     }
 };
 
+// Ajout de travaux
+const form = document.getElementById("form")
+const submitter = document.querySelector(".validate-button-ok")
+let formData = ''
+let categoryId = ''
+let title = ''
 
-const boutonEnvoi = document.querySelector(".validate-button")
-boutonEnvoi.addEventListener("click", () => addWork())
+
+
+submitter.addEventListener("click", (e) => {
+    e.preventDefault()
+    formData = new FormData(form, submitter);
+    const formDataObject = Object.fromEntries(formData)
+    console.log(formDataObject)
+    console.log(formDataObject.category)
+    console.log(categories)
+    title = formDataObject.title
+    for (let i in categories) {
+        if (categories[i].name === formDataObject.category) {
+            categoryId = categories[i].id
+        }
+    }
+
+    let token = JSON.parse(window.localStorage.getItem('token'))['token']
+    console.log(title)
+    console.log(categoryId)
+    console.log(selectedImage[0])
+    console.log(token)
+    addWork(selectedImage[0], title, categoryId, token)
+})
+
+
+// function getData(form) {
+//     var formData = new FormData(form);
+//     console.log(formData)
+  
+//     for (var pair of formData.entries()) {
+//       console.log(pair[0] + ": " + pair[1]);
+//     }
+  
+//     console.log(Object.fromEntries(formData));
+//   }
+  
+//   form.addEventListener("submit", function (e) {
+//     e.preventDefault();
+//     getData(e.target);
+//   });
+
+//   getData(form)

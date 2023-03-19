@@ -118,27 +118,30 @@ function workDelete (works) {
 
 workDelete()
 
-export function addWork(image, title, category, id) {
-  this.image = image
-  this.title = title
-  this.category = category
-  this.id = id;
+export async function addWork(image, title, categoryId, token) {
+  // this.image = image
+  // this.title = title
+  // this.categoryId = categoryId
+  // this.token = token;
 
   const form = new FormData();
-  form.append('image', /*File(['<data goes here>'], 'abajour-tahina.png;type=image/png'*/ image);
+  form.append('image', /*File(['<data goes here>'], 'abajour-tahina.png;type=image/png'*/ /*`@${image.name};type=${image.type}`*/ image);
   form.append('title', title);
-  form.append('category', category);
+  form.append('category', categoryId);
 
 
-  fetch('http://localhost:5678/api/works', {
+  await fetch('http://localhost:5678/api/works', {
     method: 'POST',
     headers: {
       'accept': 'application/json',
-      'Authorization': 'Bearer ' + id,
-      'Content-Type': 'multipart/form-data'
+      'Authorization': 'Bearer ' + token,
+      // 'Content-Type': 'multipart/form-data'
     },
     body: form
   });
+  document.querySelector(".gallery").innerHTML= '';
+  document.querySelector(".modal-gallery").innerHTML= '';
+  fetchWorks();
 
 }
 

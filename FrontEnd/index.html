@@ -137,15 +137,19 @@
                 <p id="file-requirements">jpg, png : 4mo max</p>
               </div>
             </div>
-            <form action="#" method="post">
-              <label for="titre">Titre</label>
-              <input type="text" name="titre" id="titre" />
-              <label for="categories">Catégorie</label>
-              <select name="categorie" id="categories">
-                <option value="blank"></option>
-              </select>
+            <form action="#" method="post" id="form">
+              <div class="input-fields">
+                <label for="title">Titre</label>
+                <input type="text" name="title" id="title" />
+                <label for="category">Catégorie</label>
+                <select name="category" id="category">
+                  <option value="blank"></option>
+                </select>
+              </div>
+              <button type="submit" class="validate-button-notOk">Valider</button>
+              <button type="submit" class="validate-button-ok">Valider</button>
             </form>
-            <button class="validate-button">Valider</button>
+
           </div>
 
         </div>

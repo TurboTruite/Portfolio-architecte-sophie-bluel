@@ -594,6 +594,7 @@ footer nav ul {
   margin: 0 0 0.5em 0 !important;
   border-radius: 60px;
   padding: 1em 3em;
+  align-self: center !important; 
 }
 
 .picture-upload-box p {
@@ -676,6 +677,12 @@ footer nav ul {
 .validate-button-notOk{
   background-color: #A7A7A7;
   display: block;
+}
+
+.validate-error-msg {
+  color: red;
+  padding: 1em;
+  display: none;
 }
 
 #file {

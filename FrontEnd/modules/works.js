@@ -1,18 +1,8 @@
-// let r = await fetch("http://localhost:5678/api/works");
-// if (!r.ok) {
-//   throw new Error("Problème d'acccès serveur");
-// }
-// let works = await r.json();
-
-
-// let works = await fetch("http://localhost:5678/api/works")
-// .then(works => works.json())
-
+import { arrowsOnHover } from "./modal.js";
 
 async function fetchWorks() {
   const r = await fetch("http://localhost:5678/api/works");
   const works = await r.json();
-  console.log(works)
   generateWorks(works)
   generateModalGallery(works)
   arrowsOnHover()
@@ -20,9 +10,8 @@ async function fetchWorks() {
 } 
 
 fetchWorks()
-// console.log(works)
 
-// Générer la galerie de travaux
+// ------- Générer la galerie de travaux ------- 
 function generateWorks(works) {
   for (let i = 0; i < works.length; i++) {
     const gallery = document.querySelector(".gallery");
@@ -40,7 +29,7 @@ function generateWorks(works) {
 // generateWorks(works);
 
 
-// Générer la galerie dans la modale
+// -------  Générer la galerie dans la modale ------- 
 
 function generateModalGallery(works) {
   for (let i = 0; i < works.length; i++) {
@@ -78,33 +67,12 @@ function generateModalGallery(works) {
 
 // generateModalGallery(works);
 
-
-// Modale : apparition des flèches de déplacement au hover
-
-function arrowsOnHover () {
-  const modalGalleryImg = document.querySelectorAll(".image-overlay");
-  for (let i = 0; i < modalGalleryImg.length; i++) {
-    modalGalleryImg[i].addEventListener("mouseover", () => {
-      document.getElementsByClassName('arrows')[i].style.display = "block";
-    });
-    modalGalleryImg[i].addEventListener("mouseout", () => {
-      document.getElementsByClassName('arrows')[i].style.display = "none";
-    });
-  }
-
-}
-
-
-arrowsOnHover();
-
-
 function workDelete (works) {
   const deleteButton = document.querySelectorAll(".trashcan-overlay-button");
   for (let i = 0; i < deleteButton.length; i++) {
     deleteButton[i].addEventListener("click", (e) => {
       e.preventDefault();
       const id = works[i]["id"];
-      console.log('beeeeep')
       fetch(`http://localhost:5678/api/works/${id}`, {method: "DELETE", headers: {
         "accept": "*/*",
         "Authorization": `Bearer ${JSON.parse(window.localStorage.getItem('token'))['token']}`,
@@ -118,17 +86,15 @@ function workDelete (works) {
 
 workDelete()
 
+
+// ------- Ajout de travaux  ------- 
+
 export async function addWork(image, title, categoryId, token) {
-  // this.image = image
-  // this.title = title
-  // this.categoryId = categoryId
-  // this.token = token;
 
   const form = new FormData();
-  form.append('image', /*File(['<data goes here>'], 'abajour-tahina.png;type=image/png'*/ /*`@${image.name};type=${image.type}`*/ image);
+  form.append('image', image);
   form.append('title', title);
   form.append('category', categoryId);
-
 
   await fetch('http://localhost:5678/api/works', {
     method: 'POST',
@@ -142,21 +108,19 @@ export async function addWork(image, title, categoryId, token) {
   document.querySelector(".gallery").innerHTML= '';
   document.querySelector(".modal-gallery").innerHTML= '';
   fetchWorks();
-
 }
 
-// Filtrer projets : afficher tout
+// -------  Filtrer projets ------- 
 
+// afficher tout
 const allButton = document.querySelector("#tous");
-
 allButton.addEventListener("click", function () {
   document.querySelector(".gallery").innerHTML = "";
   generateWorks(works);
 });
 
-// Filtrer projets : objets uniquement
+// objets uniquement
 const objectsButton = document.querySelector("#objets");
-
 objectsButton.addEventListener("click", function () {
   const filteredWorks = works.filter((works) => {
     return works.category.name === "Objets";
@@ -165,9 +129,8 @@ objectsButton.addEventListener("click", function () {
   generateWorks(filteredWorks);
 });
 
-// Filtrer projets : appartements uniquement
+// appartements uniquement
 const aptButton = document.querySelector("#appartements");
-
 aptButton.addEventListener("click", function () {
   const filteredWorks = works.filter((works) => {
     return works.category.name === "Appartements";
@@ -176,9 +139,8 @@ aptButton.addEventListener("click", function () {
   generateWorks(filteredWorks);
 });
 
-// Filtrer projets : hôtels uniquement
+// hôtels uniquement
 const hotelButton = document.querySelector("#hotels");
-
 hotelButton.addEventListener("click", function () {
   const filteredWorks = works.filter((works) => {
     return works.category.name === "Hotels & restaurants";

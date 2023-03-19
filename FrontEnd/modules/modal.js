@@ -56,21 +56,36 @@ const backToModalOne = function (e) {
     fileRequirements.style.color = "#000000";
     document.querySelector('.upload-interface').style.display = 'flex';
     document.querySelector('.thumbnail').style.display = 'none';
-    document.querySelector("#title").value = ' ';
+    document.querySelector("#title").value = '';
     document.querySelector("#category").selectedIndex = 0;
     document.querySelector(".validate-button-ok").style.display = "none";
     document.querySelector(".validate-button-notOk").style.display = "block";
+    titleLength = 0;
+    selectedImage = '';
+    document.querySelector(".validate-error-msg").style.display = 'none';
     backArrow.removeEventListener('click', backToModalOne);
-
 }
-
 
 document.querySelectorAll('.add-picture-button').forEach(a => {
     a.addEventListener('click', goToModalTwo)
 })
 
+// ------- apparition des flèches de déplacement au hover dans la gallerie ------- 
+export function arrowsOnHover () {
+    const modalGalleryImg = document.querySelectorAll(".image-overlay");
+    for (let i = 0; i < modalGalleryImg.length; i++) {
+      modalGalleryImg[i].addEventListener("mouseover", () => {
+        document.getElementsByClassName('arrows')[i].style.display = "block";
+      });
+      modalGalleryImg[i].addEventListener("mouseout", () => {
+        document.getElementsByClassName('arrows')[i].style.display = "none";
+      });
+    }
+  }
+  
+  arrowsOnHover();
 
-// Peupler les catégories du drop down du formulaire de soumission
+// ------- Peupler les catégories du drop down du formulaire de soumission ------- 
 let categories = ''
 const populateCategories = async function() {
 
@@ -107,15 +122,12 @@ const populateCategories = async function() {
 
 populateCategories()
 
-
-// Sélectionner ume image dans le formulaire de soumission et l'afficher
-
+// ------- Sélectionner ume image dans le formulaire de soumission et l'afficher ------- 
 let input = document.querySelector('#file');
 const fileRequirements = document.querySelector('#file-requirements');
 let uploadBox = document.querySelector('.picture-upload-box');
 let selectedImage = ''
 input.addEventListener('change', () => {
-    console.log('click détecté')
     updateImageDisplay()
 });
 
@@ -128,65 +140,73 @@ function updateImageDisplay() {
     if (!(selectedImage[0].type === "image/png") && !(selectedImage[0].type === "image/jpeg")) {
     fileRequirements.innerHTML = "Format invalide - jpg, png : 4mo max";
     fileRequirements.style.color = "red";
+    selectedImage = '';
     } else 
     if (selectedImage[0].size > 4000000) {
         fileRequirements.innerHTML = "Taille trop importante - jpg, png : 4mo max";
         fileRequirements.style.color = "red";
+        selectedImage = '';
     } else {
         document.querySelector('.upload-interface').style.display = 'none'
         const image = document.querySelector(".thumbnail")
         image.src = URL.createObjectURL(selectedImage[0])
-        console.log(selectedImage[0])
         document.querySelector('.thumbnail').style.display = 'flex'
+        submitterToggle()
     }
 };
 
-// Ajout de travaux
+
+
+// ------- Ajout de travaux ------- 
 const form = document.getElementById("form")
 const submitter = document.querySelector(".validate-button-ok")
 let formData = ''
 let categoryId = ''
 let title = ''
 
-
-
 submitter.addEventListener("click", (e) => {
     e.preventDefault()
     formData = new FormData(form, submitter);
     const formDataObject = Object.fromEntries(formData)
-    console.log(formDataObject)
-    console.log(formDataObject.category)
-    console.log(categories)
     title = formDataObject.title
     for (let i in categories) {
         if (categories[i].name === formDataObject.category) {
             categoryId = categories[i].id
         }
     }
-
     let token = JSON.parse(window.localStorage.getItem('token'))['token']
-    console.log(title)
-    console.log(categoryId)
-    console.log(selectedImage[0])
-    console.log(token)
     addWork(selectedImage[0], title, categoryId, token)
+    closeModal(e)
 })
 
 
-// function getData(form) {
-//     var formData = new FormData(form);
-//     console.log(formData)
-  
-//     for (var pair of formData.entries()) {
-//       console.log(pair[0] + ": " + pair[1]);
-//     }
-  
-//     console.log(Object.fromEntries(formData));
-//   }
-  
-//   form.addEventListener("submit", function (e) {
-//     e.preventDefault();
-//     getData(e.target);
-//   });
+// ------- Gestion du bouton "valider" de l'envoi de travaux ------- 
+const fakeSubmitter = document.querySelector('.validate-button-notOk')
+const titleField = document.querySelector('#title')
+const categoryDropDown = document.querySelector('#category')
+let titleLength = 0;
 
-//   getData(form)
+fakeSubmitter.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector(".validate-error-msg").style.display = 'block';
+})
+
+titleField.addEventListener('input', () => {
+    titleLength = titleField.value.length;
+    submitterToggle();
+})
+
+categoryDropDown.addEventListener('change', () => {
+    submitterToggle();
+})
+
+function submitterToggle() {
+    if (!(titleLength === 0) && !(category.value === 'blank') && !(selectedImage === '')) {
+        document.querySelector(".validate-error-msg").style.display = 'none';
+        fakeSubmitter.style.display = 'none'
+        submitter.style.display = 'block'
+    } else {
+        fakeSubmitter.style.display = 'block'
+        submitter.style.display = 'none'
+    }
+}

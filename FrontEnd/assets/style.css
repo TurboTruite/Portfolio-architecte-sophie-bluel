@@ -190,6 +190,7 @@ input {
   border-radius: 60px;
   padding: 0.5em 1.5em;
   font-weight: bold;
+  border: none;
 }
 
 nav ul {

@@ -12,7 +12,10 @@
     />
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
-    <script src="https://kit.fontawesome.com/61e3f1ef50.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/61e3f1ef50.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="./modules/admin.js" defer></script>
     <script type="module" src="./modules/works.js" defer></script>
     <script type="module" src="./modules/modal.js" defer></script>
@@ -29,7 +32,9 @@
         <ul>
           <li><a href="./index.html" style="font-weight: 600">projets</a></li>
           <li>contact</li>
-          <li class="login" id="login-menu-item"><a href="./login.html">login</a></li>
+          <li class="login" id="login-menu-item">
+            <a href="./login.html">login</a>
+          </li>
           <li class="logout" id="logout-menu-item"><a href="">logout</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
@@ -43,7 +48,6 @@
             <figcaption><i class="fa-regular fa-pen-to-square"></i></figcaption>
             <p>modifier</p>
           </a>
-
         </figure>
         <article>
           <h2>Designer d'espace</h2>
@@ -93,8 +97,7 @@
             >Hôtels & restaurants</label
           >
         </form>
-        <div class="gallery">
-        </div>
+        <div class="gallery"></div>
       </section>
       <section id="contact">
         <h2>Contact</h2>
@@ -117,23 +120,26 @@
           </div>
           <div class="modal-content1">
             <h3>Galerie photo</h3>
-            <div class="modal-gallery">
-            </div>
+            <div class="modal-gallery"></div>
             <button class="add-picture-button">Ajouter une photo</button>
             <a href="#" class="supprimer-gallerie">Supprimer la gallerie</a>
           </div>
           <div class="modal-content2">
             <h3>Ajout photo</h3>
             <div class="picture-upload-box">
-              <img src="" class="thumbnail">
+              <img src="" class="thumbnail" />
               <div class="upload-interface">
-                <a href="#" class="js-image-upload"><i class="fa-regular fa-image"></i></a>
-                <!-- <button class="picture-upload-button js-image-upload">+ Ajouter photo</button> -->
-                <label for="file" class="picture-upload-button js-image-upload">+ Ajouter photo<input type="file"
-                  name="file"
-                  id="file"
-                  accept=".png, .jpg"
-                  > </label>
+                <a href="#" class="js-image-upload"
+                  ><i class="fa-regular fa-image"></i
+                ></a>
+                <label for="file" class="picture-upload-button js-image-upload"
+                  >+ Ajouter photo<input
+                    type="file"
+                    name="file"
+                    id="file"
+                    accept=".png, .jpg"
+                  />
+                </label>
                 <p id="file-requirements">jpg, png : 4mo max</p>
               </div>
             </div>
@@ -146,13 +152,13 @@
                   <option value="blank"></option>
                 </select>
               </div>
-              <button type="button" class="validate-button-notOk">Valider</button>
+              <button type="button" class="validate-button-notOk">
+                Valider
+              </button>
               <button type="submit" class="validate-button-ok">Valider</button>
               <p class="validate-error-msg">Veuillez remplir tous les champs</p>
             </form>
-
           </div>
-
         </div>
       </aside>
     </main>

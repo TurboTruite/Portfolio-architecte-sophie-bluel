@@ -3,16 +3,16 @@ import { arrowsOnHover } from "./modal.js";
 async function fetchWorks() {
   const r = await fetch("http://localhost:5678/api/works");
   const works = await r.json();
-  generateWorks(works)
-  generateModalGallery(works)
-  arrowsOnHover()
-  workDelete(works)
-  filterWorks(works)
-} 
+  generateWorks(works);
+  generateModalGallery(works);
+  arrowsOnHover();
+  workDelete(works);
+  filterWorks(works);
+}
 
-fetchWorks()
+fetchWorks();
 
-// ------- Générer la galerie de travaux ------- 
+// ------- Générer la galerie de travaux -------
 function generateWorks(works) {
   for (let i = 0; i < works.length; i++) {
     const gallery = document.querySelector(".gallery");
@@ -27,10 +27,7 @@ function generateWorks(works) {
   }
 }
 
-// generateWorks(works);
-
-
-// -------  Générer la galerie dans la modale ------- 
+// -------  Générer la galerie dans la modale -------
 
 function generateModalGallery(works) {
   for (let i = 0; i < works.length; i++) {
@@ -38,23 +35,20 @@ function generateModalGallery(works) {
     const figure = document.createElement("figure");
     const img = document.createElement("img");
     img.src = works[i].imageUrl;
-    img.setAttribute("class", "overlay-img")
+    img.setAttribute("class", "overlay-img");
     const editLink = document.createElement("a");
     editLink.innerHTML = "éditer";
     const imgOverlay = document.createElement("div");
-    imgOverlay.setAttribute('class', 'image-overlay');
+    imgOverlay.setAttribute("class", "image-overlay");
     const trashOverlayButton = document.createElement("button");
-    trashOverlayButton.setAttribute('class', 'trashcan-overlay-button');
-    // Mais pourquoi ça reload bordel?
-    // trashOverlayButton.setAttribute('type', "button");
-    // trashOverlayButton.setAttribute('onclick', "return false");
+    trashOverlayButton.setAttribute("class", "trashcan-overlay-button");
     const trashcan = document.createElement("i");
-    trashcan.setAttribute('class', 'fa-solid fa-trash-can');
+    trashcan.setAttribute("class", "fa-solid fa-trash-can");
     const arrowsOverlayButton = document.createElement("button");
-    arrowsOverlayButton.setAttribute('class', 'overlay-button arrows')
-    arrowsOverlayButton.setAttribute('display', 'block');
+    arrowsOverlayButton.setAttribute("class", "overlay-button arrows");
+    arrowsOverlayButton.setAttribute("display", "block");
     const arrows = document.createElement("i");
-    arrows.setAttribute('class', 'fa-solid fa-up-down-left-right');
+    arrows.setAttribute("class", "fa-solid fa-up-down-left-right");
     gallery.appendChild(figure);
     figure.appendChild(img);
     figure.appendChild(imgOverlay);
@@ -66,90 +60,89 @@ function generateModalGallery(works) {
   }
 }
 
-// generateModalGallery(works);
-
-function workDelete (works) {
+function workDelete(works) {
   const deleteButton = document.querySelectorAll(".trashcan-overlay-button");
   for (let i = 0; i < deleteButton.length; i++) {
     deleteButton[i].addEventListener("click", (e) => {
       e.preventDefault();
       const id = works[i]["id"];
-      fetch(`http://localhost:5678/api/works/${id}`, {method: "DELETE", headers: {
-        "accept": "*/*",
-        "Authorization": `Bearer ${JSON.parse(window.localStorage.getItem('token'))['token']}`,
-      }});
-      document.querySelector(".gallery").innerHTML= '';
-      document.querySelector(".modal-gallery").innerHTML= '';
-      fetchWorks()
+      fetch(`http://localhost:5678/api/works/${id}`, {
+        method: "DELETE",
+        headers: {
+          accept: "*/*",
+          Authorization: `Bearer ${
+            JSON.parse(window.localStorage.getItem("token"))["token"]
+          }`,
+        },
+      });
+      document.querySelector(".gallery").innerHTML = "";
+      document.querySelector(".modal-gallery").innerHTML = "";
+      fetchWorks();
     });
   }
 }
 
-workDelete()
+workDelete();
 
-
-// ------- Ajout de travaux  ------- 
+// ------- Ajout de travaux  -------
 
 export async function addWork(image, title, categoryId, token) {
-
   const form = new FormData();
-  form.append('image', image);
-  form.append('title', title);
-  form.append('category', categoryId);
+  form.append("image", image);
+  form.append("title", title);
+  form.append("category", categoryId);
 
-  await fetch('http://localhost:5678/api/works', {
-    method: 'POST',
+  await fetch("http://localhost:5678/api/works", {
+    method: "POST",
     headers: {
-      'accept': 'application/json',
-      'Authorization': 'Bearer ' + token,
+      accept: "application/json",
+      Authorization: "Bearer " + token,
       // 'Content-Type': 'multipart/form-data'
     },
-    body: form
+    body: form,
   });
-  document.querySelector(".gallery").innerHTML= '';
-  document.querySelector(".modal-gallery").innerHTML= '';
+  document.querySelector(".gallery").innerHTML = "";
+  document.querySelector(".modal-gallery").innerHTML = "";
   fetchWorks();
 }
 
-// -------  Filtrer projets ------- 
+// -------  Filtrer projets -------
 
 function filterWorks(works) {
-// afficher tout
-const allButton = document.querySelector("#tous");
-allButton.addEventListener("click", function () {
-  document.querySelector(".gallery").innerHTML = "";
-  generateWorks(works);
-});
-
-// objets uniquement
-const objectsButton = document.querySelector("#objets");
-objectsButton.addEventListener("click", function () {
-  const filteredWorks = works.filter((works) => {
-    return works.category.name === "Objets";
+  // afficher tout
+  const allButton = document.querySelector("#tous");
+  allButton.addEventListener("click", function () {
+    document.querySelector(".gallery").innerHTML = "";
+    generateWorks(works);
   });
-  document.querySelector(".gallery").innerHTML = "";
-  generateWorks(filteredWorks);
-});
 
-// appartements uniquement
-const aptButton = document.querySelector("#appartements");
-aptButton.addEventListener("click", function () {
-  const filteredWorks = works.filter((works) => {
-    return works.category.name === "Appartements";
+  // objets uniquement
+  const objectsButton = document.querySelector("#objets");
+  objectsButton.addEventListener("click", function () {
+    const filteredWorks = works.filter((works) => {
+      return works.category.name === "Objets";
+    });
+    document.querySelector(".gallery").innerHTML = "";
+    generateWorks(filteredWorks);
   });
-  document.querySelector(".gallery").innerHTML = "";
-  generateWorks(filteredWorks);
-});
 
-// hôtels uniquement
-const hotelButton = document.querySelector("#hotels");
-hotelButton.addEventListener("click", function () {
-  const filteredWorks = works.filter((works) => {
-    return works.category.name === "Hotels & restaurants";
+  // appartements uniquement
+  const aptButton = document.querySelector("#appartements");
+  aptButton.addEventListener("click", function () {
+    const filteredWorks = works.filter((works) => {
+      return works.category.name === "Appartements";
+    });
+    document.querySelector(".gallery").innerHTML = "";
+    generateWorks(filteredWorks);
   });
-  document.querySelector(".gallery").innerHTML = "";
-  generateWorks(filteredWorks);
-});
+
+  // hôtels uniquement
+  const hotelButton = document.querySelector("#hotels");
+  hotelButton.addEventListener("click", function () {
+    const filteredWorks = works.filter((works) => {
+      return works.category.name === "Hotels & restaurants";
+    });
+    document.querySelector(".gallery").innerHTML = "";
+    generateWorks(filteredWorks);
+  });
 }
-
-

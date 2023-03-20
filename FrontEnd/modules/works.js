@@ -7,6 +7,7 @@ async function fetchWorks() {
   generateModalGallery(works)
   arrowsOnHover()
   workDelete(works)
+  filterWorks(works)
 } 
 
 fetchWorks()
@@ -112,6 +113,7 @@ export async function addWork(image, title, categoryId, token) {
 
 // -------  Filtrer projets ------- 
 
+function filterWorks(works) {
 // afficher tout
 const allButton = document.querySelector("#tous");
 allButton.addEventListener("click", function () {
@@ -148,3 +150,6 @@ hotelButton.addEventListener("click", function () {
   document.querySelector(".gallery").innerHTML = "";
   generateWorks(filteredWorks);
 });
+}
+
+

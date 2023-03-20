@@ -156,7 +156,6 @@ function updateImageDisplay() {
 };
 
 
-
 // ------- Ajout de travaux ------- 
 const form = document.getElementById("form")
 const submitter = document.querySelector(".validate-button-ok")
@@ -176,7 +175,8 @@ submitter.addEventListener("click", (e) => {
     }
     let token = JSON.parse(window.localStorage.getItem('token'))['token']
     addWork(selectedImage[0], title, categoryId, token)
-    closeModal(e)
+// Eventuellement si on veut un retour direct à l'accueil :
+//    closeModal(e)
 })
 
 

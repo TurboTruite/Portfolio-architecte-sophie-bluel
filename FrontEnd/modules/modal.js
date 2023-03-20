@@ -182,7 +182,44 @@ let titleLength = 0;
 
 fakeSubmitter.addEventListener("click", (e) => {
   e.preventDefault();
-  document.querySelector(".validate-error-msg").style.display = "block";
+  const errorMsg = document.querySelector(".validate-error-msg");
+  let errorMsgTxt = '';
+  if (
+    (titleLength === 0) &&
+    (category.value === "blank") &&
+    (selectedImage === "")
+  ) {
+    errorMsgTxt = 'Veuillez ajouter une image, un titre et une catégorie'
+  } else if (
+    (titleLength === 0) &&
+    (category.value === "blank")
+  ) {
+    errorMsgTxt = 'Veuillez ajouter un titre et sélectionner une catégorie'
+  } else if (
+    (category.value === "blank") &&
+    (selectedImage === "")
+  ) {
+    errorMsgTxt = 'Veuillez ajouter une image et sélectionner une catégorie'
+  } else if (
+    (titleLength === 0) &&
+    (selectedImage === "")
+  ) {
+    errorMsgTxt = 'Veuillez ajouter une image et un titre'
+  } else if (
+    (titleLength === 0)
+  ) {
+    errorMsgTxt = 'Veuillez entrer un titre'
+  } else if (
+    (category.value === "blank")
+  ) {
+    errorMsgTxt = 'Veuillez sélectionner une catégorie'
+  } else if (
+    (selectedImage === "")
+  ) {
+    errorMsgTxt = 'Veuillez sélectionner une image'
+  }
+  errorMsg.innerHTML = errorMsgTxt;
+  errorMsg.style.display = "block";
 });
 
 titleField.addEventListener("input", () => {

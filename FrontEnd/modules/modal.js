@@ -170,8 +170,10 @@ submitter.addEventListener("click", (e) => {
   }
   let token = JSON.parse(window.localStorage.getItem("token"))["token"];
   addWork(selectedImage[0], title, categoryId, token);
-  // Eventuellement si on veut un retour direct à l'accueil :
+  // Eventuellement si on veut un retour à l'accueil :
   //    closeModal(e)
+  // Suggestion de mon mentor pour compenser le manque de feedback visuel à l'ajour d'un nouveau projet :
+  backToModalOne(e);
 });
 
 // ------- Gestion du bouton "valider" de l'envoi de travaux -------

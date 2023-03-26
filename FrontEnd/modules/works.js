@@ -63,10 +63,10 @@ function generateModalGallery(works) {
 function workDelete(works) {
   const deleteButton = document.querySelectorAll(".trashcan-overlay-button");
   for (let i = 0; i < deleteButton.length; i++) {
-    deleteButton[i].addEventListener("click", (e) => {
+    deleteButton[i].addEventListener("click", async (e) => {
       e.preventDefault();
       const id = works[i]["id"];
-      fetch(`http://localhost:5678/api/works/${id}`, {
+      await fetch(`http://localhost:5678/api/works/${id}`, {
         method: "DELETE",
         headers: {
           accept: "*/*",

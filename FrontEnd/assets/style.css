@@ -243,6 +243,7 @@ nav li a:hover {
   gap: 0.8rem;
   margin-left: 4em;
   text-decoration: none;
+  color: #000000;
 }
 
 #introduction img {

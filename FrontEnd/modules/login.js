@@ -17,8 +17,9 @@ loginButton.addEventListener("click", async (e) => {
   });
 
   const r = await response.json();
+  console.log(r)
 
-  if (r.message === "user not found") {
+  if (r.message === "user not found" || r.error) {
     const errorMsg = document.getElementsByClassName("login-error-msg")[0];
     errorMsg.style.display = "block";
   } else {
